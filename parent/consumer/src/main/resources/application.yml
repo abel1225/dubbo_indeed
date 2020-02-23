@@ -1,0 +1,8 @@
+server:
+  port: 9291
+
+  tomcat:
+    basedir: ./logs
+    accesslog:
+      enabled: true
+      pattern: "%t %a %r %s (%D ms)"

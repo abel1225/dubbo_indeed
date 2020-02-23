@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="dubbo-provider-demo" />
+
+	<!-- 使用zookeeper注册中心暴露发现服务地址 -->
+    <!--<dubbo:registry address="${dubbo.registry.address}" />-->
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183" />
+
+	<!-- 用dubbo协议在20880端口暴露服务 -->
+	<!--<dubbo:protocol name="dubbo" port="${dubbo.protocol.port}" />-->
+	<dubbo:protocol name="dubbo" port="20880" />
+
+    <dubbo:provider filter="monitorArgFilter" />
+
+  	<dubbo:service interface="indeed.dubbo.api.service.GeneratedService" ref="mysqlGeneratedService" retries="0" version="1.0" />
+  	<dubbo:service interface="indeed.dubbo.api.service.GeneratedService" ref="redisGeneratedService" retries="0" version="2.0" />
+  	<dubbo:service interface="indeed.dubbo.api.service.GeneratedService" ref="redisGeneratedService" retries="0" version="3.0" />
+
+  	<bean id="mysqlGeneratedService" class="indeed.dubbo.provider.service.MysqlGeneratedService"/>
+
+  	<bean id="redisGeneratedService" class="indeed.dubbo.provider.service.RedisGeneratedService"/>
+
+  	<bean id="snowflakesGeneratedService" class="indeed.dubbo.provider.service.SnowFlakesGeneratedService"/>
+
+</beans>
