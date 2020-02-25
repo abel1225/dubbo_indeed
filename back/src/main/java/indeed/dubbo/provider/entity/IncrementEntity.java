@@ -3,7 +3,6 @@ package indeed.dubbo.provider.entity;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 /**
