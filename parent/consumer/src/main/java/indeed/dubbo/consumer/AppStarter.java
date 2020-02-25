@@ -1,9 +1,11 @@
 package indeed.dubbo.consumer;
 
-import com.alibaba.dubbo.config.spring.context.annotation.EnableDubboConfig;
+import com.sun.org.apache.xml.internal.utils.ThreadControllerWrapper;
 import indeed.dubbo.api.dto.ResultDto;
 import indeed.dubbo.api.service.GeneratedService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.concurrent.*;
 
 /**
  * @description 
@@ -21,7 +23,33 @@ public class AppStarter {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/dubbo-demo-consumer.xml");
         context.start();
         GeneratedService demoService =context.getBean(GeneratedService.class);
-        ResultDto<Long> hello = demoService.getId("test");
-        System.out.println(hello.getData());
+        ExecutorService service = new ThreadPoolExecutor(100, 100,
+                60L, TimeUnit.SECONDS,
+                new LinkedBlockingDeque<>(), r -> new Thread(r, "测试"));
+        int count=1000;
+        long start = System.currentTimeMillis();
+        int amount=1000;
+        CountDownLatch countDownLatch = new CountDownLatch(count);
+        for (int i=0; i < amount; i++) {
+            service.execute(
+                    () -> {
+                        try {
+                            ResultDto<Long> hello = demoService.getId("test");
+                            System.out.println("线程[" + Thread.currentThread().getId() + "] 获取响应的ID为: " + hello.getData());
+                        } finally {
+                            countDownLatch.countDown();
+                        }
+                    });
+        }
+        service.shutdown();
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("消耗时间: " + (end - start));
+//        Main.main(args);
+
     }
 }

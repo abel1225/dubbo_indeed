@@ -16,8 +16,8 @@ import org.springframework.context.annotation.Configuration;
  * @date 2020-02-21
  * @version 
  */
-@Configuration
-@DubboComponentScan(basePackages = {"indeed.dubbo.provider.service"})
+//@Configuration
+//@DubboComponentScan(basePackages = {"indeed.dubbo.provider.service"})
 public class DubboConfig {
 
     /**
@@ -73,6 +73,7 @@ public class DubboConfig {
         ProtocolConfig protocolConfig=new ProtocolConfig();
         protocolConfig.setName("dubbo");
         protocolConfig.setPort(20880);
+        protocolConfig.setThreads(1000);
         return protocolConfig;
     }
 

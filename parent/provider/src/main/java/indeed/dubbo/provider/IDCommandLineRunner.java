@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2019-10-10
  * @version 
  */
-@Configuration
+//@Configuration
 public class IDCommandLineRunner implements CommandLineRunner {
 
     @Autowired

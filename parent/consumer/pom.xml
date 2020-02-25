@@ -67,7 +67,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>org.com.shuyue.service.api.ApiApplication</mainClass>
+                    <mainClass>indeed.dubbo.consumer.AppStarter</mainClass>
                 </configuration>
                 <executions>
                     <execution>

@@ -27,10 +27,11 @@ public class MysqlGeneratedService implements GeneratedService {
     @Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
     public ResultDto<Long> getId(String salt) {
         Query query = entityManager.createNativeQuery("select getSeq('"+salt+"')");
-        if (null == query.getSingleResult()) {
+        Object singleResult=query.getSingleResult();
+        if (null == singleResult) {
             throw new RuntimeException("id get failure!");
         }
-        Long id = Long.valueOf(query.getSingleResult().toString());
+        Long id = Long.valueOf(singleResult.toString());
 
         return new ResultDto<Long>().setData(id);
     }

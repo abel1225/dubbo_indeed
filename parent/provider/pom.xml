@@ -83,13 +83,13 @@
 
     <build>
 
-        <finalName>dubbo_consumer</finalName>
+        <finalName>dubbo_provider</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>org.com.shuyue.service.api.ApiApplication</mainClass>
+                    <mainClass>indeed.dubbo.provider.AppStarter</mainClass>
                 </configuration>
                 <executions>
                     <execution>
