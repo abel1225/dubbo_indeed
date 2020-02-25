@@ -18,7 +18,8 @@ import org.springframework.context.annotation.Configuration;
  * @version 
  */
 @Configuration
-@EnableDubbo(scanBasePackages = "indeed.dubbo.provider.service") //添加JavaConfig形式
+//@EnableDubbo(scanBasePackages = "indeed.dubbo.provider.service") //添加JavaConfig形式
+@DubboComponentScan(basePackages = {"indeed.dubbo.provider.service"}) //添加JavaConfig形式
 public class DubboConfig {
 
     /**
