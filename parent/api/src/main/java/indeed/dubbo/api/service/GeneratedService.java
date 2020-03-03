@@ -2,6 +2,8 @@ package indeed.dubbo.api.service;
 
 import indeed.dubbo.api.dto.ResultDto;
 
+import java.util.Optional;
+
 /**
  * @description
  * @author Abel.li
@@ -16,6 +18,6 @@ public interface GeneratedService {
      * @param salt 盐
      * @return
      */
-    ResultDto<Long> getId(String salt);
+    Optional<ResultDto<Long>> getId(String salt);
 
 }

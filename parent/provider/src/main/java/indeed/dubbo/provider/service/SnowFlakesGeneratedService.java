@@ -2,10 +2,10 @@ package indeed.dubbo.provider.service;
 
 import indeed.dubbo.api.dto.ResultDto;
 import indeed.dubbo.api.service.GeneratedService;
-import indeed.dubbo.provider.component.Snowflake;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * @author Abel.li
@@ -21,8 +21,8 @@ public class SnowFlakesGeneratedService implements GeneratedService {
     private SnowflakeService snowflakeService;
 
     @Override
-    public ResultDto<Long> getId(String salt) {
-        return new ResultDto<Long>().setData(snowflakeService.getInstance().nextId());
+    public Optional<ResultDto<Long>> getId(String salt) {
+        return Optional.of(new ResultDto<Long>().setData(snowflakeService.getInstance().nextId()));
     }
 
 }

@@ -1,10 +1,10 @@
 package indeed.dubbo.consumer;
 
-import com.sun.org.apache.xml.internal.utils.ThreadControllerWrapper;
 import indeed.dubbo.api.dto.ResultDto;
 import indeed.dubbo.api.service.GeneratedService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Optional;
 import java.util.concurrent.*;
 
 /**
@@ -33,8 +33,8 @@ public class AppStarter {
 //            service.execute(
 //                    () -> {
 //                        try {
-//                            ResultDto<Long> hello = demoService.getId("test");
-//                            System.out.println("线程[" + Thread.currentThread().getId() + "] 获取响应的ID为: " + hello.getData());
+//                            Optional<ResultDto<Long>> hello = demoService.getId("test");
+//                            System.out.println("线程[" + Thread.currentThread().getId() + "] 获取响应的ID为: " + hello.get().getData());
 //                        } finally {
 //                            countDownLatch.countDown();
 //                        }
@@ -46,9 +46,9 @@ public class AppStarter {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        ResultDto<Long> hello = demoService.getId("test");
+        Optional<ResultDto<Long>> hello = demoService.getId("test");
         long end = System.currentTimeMillis();
-        System.out.println("消耗时间: " + hello.getData());
+        System.out.println("消耗时间: " + hello.get().getData());
 //        System.out.println("消耗时间: " + (end - start));
 //        Main.main(args);
 

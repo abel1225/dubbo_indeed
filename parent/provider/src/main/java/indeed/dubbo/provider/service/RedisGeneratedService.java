@@ -6,6 +6,8 @@ import indeed.dubbo.provider.component.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 /**
  * @author Abel.li
  * @description
@@ -20,8 +22,8 @@ public class RedisGeneratedService implements GeneratedService {
     private RedisUtil redisUtil;
 
     @Override
-    public ResultDto<Long>getId(String salt) {
-        return new ResultDto<Long>().setData(redisUtil.incr("INCR", 1L));
+    public Optional<ResultDto<Long>> getId(String salt) {
+        return Optional.of(new ResultDto<Long>().setData(redisUtil.incr("INCR", 1L)));
     }
 
 }

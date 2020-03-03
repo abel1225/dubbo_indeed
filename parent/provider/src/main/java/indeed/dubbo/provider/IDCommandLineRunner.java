@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2019-10-10
  * @version 
  */
-//@Configuration
+@Configuration
 public class IDCommandLineRunner implements CommandLineRunner {
 
     @Autowired
@@ -20,6 +20,6 @@ public class IDCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        System.out.println("id: " + mysqlGeneratedService.getId("test").getData());
+        System.out.println("id: " + mysqlGeneratedService.getId("test").get().getData());
     }
 }

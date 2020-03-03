@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.Optional;
 
 /**
  * @author Abel.li
@@ -25,7 +26,7 @@ public class MysqlGeneratedService implements GeneratedService {
 
     @Override
     @Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
-    public ResultDto<Long> getId(String salt) {
+    public Optional<ResultDto<Long>> getId(String salt) {
         Query query = entityManager.createNativeQuery("select getSeq('"+salt+"')");
         Object singleResult=query.getSingleResult();
         if (null == singleResult) {
@@ -33,7 +34,7 @@ public class MysqlGeneratedService implements GeneratedService {
         }
         Long id = Long.valueOf(singleResult.toString());
 
-        return new ResultDto<Long>().setData(id);
+        return Optional.of(new ResultDto<Long>().setData(id));
     }
 
 }
