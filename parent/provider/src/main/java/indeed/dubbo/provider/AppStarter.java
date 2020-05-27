@@ -23,8 +23,8 @@ public class AppStarter {
 //        // 注册当前配置 Bean
 //        context.register(DubboConfig.class);
 //        context.refresh();
-//        new EmbeddedZooKeeper(2281, false).start();
-//        Thread.sleep(1000);
+        new EmbeddedZooKeeper(2281, false).start();
+        Thread.sleep(1000);
 
         SpringApplication.run(AppStarter.class, args);
     }

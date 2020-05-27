@@ -51,6 +51,7 @@
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-recipes</artifactId>
         </dependency>
+
         <dependency>
             <groupId>indeed.dubbo</groupId>
             <artifactId>api</artifactId>

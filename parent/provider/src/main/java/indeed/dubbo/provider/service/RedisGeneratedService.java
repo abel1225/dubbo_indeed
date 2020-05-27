@@ -22,8 +22,10 @@ public class RedisGeneratedService implements GeneratedService {
     private RedisUtil redisUtil;
 
     @Override
-    public Optional<ResultDto<Long>> getId(String salt) {
-        return Optional.of(new ResultDto<Long>().setData(redisUtil.incr("INCR", 1L)));
+    public ResultDto<Long> getId(String salt) {
+        long incr=redisUtil.incr("INCR", 1L);
+        System.out.println(incr);
+        return new ResultDto<Long>().setData(incr);
     }
 
 }

@@ -22,19 +22,19 @@ public class AppStarter {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/dubbo-demo-consumer.xml");
         context.start();
         GeneratedService demoService =context.getBean(GeneratedService.class);
+        long start = System.currentTimeMillis();
 //        ExecutorService service = new ThreadPoolExecutor(100, 100,
 //                60L, TimeUnit.SECONDS,
 //                new LinkedBlockingDeque<>(), r -> new Thread(r, "测试"));
 //        int count=1000;
-//        long start = System.currentTimeMillis();
 //        int amount=1000;
 //        CountDownLatch countDownLatch = new CountDownLatch(count);
 //        for (int i=0; i < amount; i++) {
 //            service.execute(
 //                    () -> {
 //                        try {
-//                            Optional<ResultDto<Long>> hello = demoService.getId("test");
-//                            System.out.println("线程[" + Thread.currentThread().getId() + "] 获取响应的ID为: " + hello.get().getData());
+//                            ResultDto<Long> hello = demoService.getId("test");
+//                            System.out.println("线程[" + Thread.currentThread().getId() + "] 获取响应的ID为: " + hello.getData());
 //                        } finally {
 //                            countDownLatch.countDown();
 //                        }
@@ -46,10 +46,10 @@ public class AppStarter {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        Optional<ResultDto<Long>> hello = demoService.getId("test");
+        ResultDto<Long> hello = demoService.getId("test");
         long end = System.currentTimeMillis();
-        System.out.println("消耗时间: " + hello.get().getData());
-//        System.out.println("消耗时间: " + (end - start));
+        System.out.println("获取到的ID: " + hello.getData());
+        System.out.println("消耗时间: " + (end - start));
 //        Main.main(args);
 
     }

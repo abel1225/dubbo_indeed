@@ -1,6 +1,8 @@
 package indeed.dubbo.provider;
 
 import indeed.dubbo.provider.service.MysqlGeneratedService;
+import indeed.dubbo.provider.service.RedisGeneratedService;
+import indeed.dubbo.provider.service.SnowFlakesGeneratedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -17,9 +19,15 @@ public class IDCommandLineRunner implements CommandLineRunner {
 
     @Autowired
     private MysqlGeneratedService mysqlGeneratedService;
+    @Autowired
+    private RedisGeneratedService redisGeneratedService;
+    @Autowired
+    private SnowFlakesGeneratedService snowFlakesGeneratedService;
 
     @Override
     public void run(String... args) {
-        System.out.println("id: " + mysqlGeneratedService.getId("test").get().getData());
+        System.out.println("mysql id: " + mysqlGeneratedService.getId("test").getData());
+        System.out.println("redis id: " + redisGeneratedService.getId("test").getData());
+        System.out.println("snow id: " + snowFlakesGeneratedService.getId("test").getData());
     }
 }

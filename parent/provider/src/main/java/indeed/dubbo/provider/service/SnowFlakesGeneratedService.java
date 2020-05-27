@@ -21,8 +21,8 @@ public class SnowFlakesGeneratedService implements GeneratedService {
     private SnowflakeService snowflakeService;
 
     @Override
-    public Optional<ResultDto<Long>> getId(String salt) {
-        return Optional.of(new ResultDto<Long>().setData(snowflakeService.getInstance().nextId()));
+    public ResultDto<Long> getId(String salt) {
+        return new ResultDto<Long>().setData(snowflakeService.getInstance().nextId());
     }
 
 }

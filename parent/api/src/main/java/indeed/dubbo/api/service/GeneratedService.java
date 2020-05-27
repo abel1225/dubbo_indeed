@@ -18,6 +18,6 @@ public interface GeneratedService {
      * @param salt 盐
      * @return
      */
-    Optional<ResultDto<Long>> getId(String salt);
+    ResultDto<Long> getId(String salt);
 
 }

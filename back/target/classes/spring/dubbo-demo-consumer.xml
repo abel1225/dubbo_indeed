@@ -21,14 +21,13 @@
        xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    <context:property-placeholder/>
+    <dubbo:application name="demo-indeed.dubbo.consumer"/>
 
-    <dubbo:application name="demo-provider"/>
+    <!--<dubbo:registry protocol="zookeeper" address="192.168.43.172:2181?backup=192.168.43.172:2182,192.168.43.172:2183"/>-->
+    <!--<dubbo:registry protocol="zookeeper" address="192.168.43.172:2181,192.168.43.172:2182,192.168.43.172:2183" client="zkclient"/>-->
+    <!--<dubbo:registry id="registry" protocol="zookeeper" address="192.168.43.172:2281" client="zkclient"/>-->
+    <dubbo:registry id="registry" protocol="zookeeper" address="192.168.43.172:2281"/>
 
-    <dubbo:registry address="zookeeper://${zookeeper.address:127.0.0.1}:2181"/>
-
-    <bean id="demoService" class="org.apache.dubbo.samples.basic.impl.DemoServiceImpl"/>
-
-    <dubbo:service interface="org.apache.dubbo.samples.basic.api.DemoService" ref="demoService"/>
+    <dubbo:reference id="generatedService" check="true" interface="indeed.dubbo.api.service.GeneratedService" version="3.0"/>
 
 </beans>

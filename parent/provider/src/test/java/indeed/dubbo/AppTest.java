@@ -27,6 +27,6 @@ public class AppTest {
     @PerfTest(threads = 1000, invocations = 1500)
 //    @PerfTest(threads = 100, duration = 1500)
     public void findAll() {
-        System.out.printf("ID: %d", snowFlakesGeneratedService.getId("test").get().getData());
+        System.out.printf("ID: %d", snowFlakesGeneratedService.getId("test").getData());
     }
 }

@@ -26,7 +26,7 @@ public class MysqlGeneratedService implements GeneratedService {
 
     @Override
     @Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
-    public Optional<ResultDto<Long>> getId(String salt) {
+    public ResultDto<Long> getId(String salt) {
         Query query = entityManager.createNativeQuery("select getSeq('"+salt+"')");
         Object singleResult=query.getSingleResult();
         if (null == singleResult) {
@@ -34,7 +34,7 @@ public class MysqlGeneratedService implements GeneratedService {
         }
         Long id = Long.valueOf(singleResult.toString());
 
-        return Optional.of(new ResultDto<Long>().setData(id));
+        return new ResultDto<Long>().setData(id);
     }
 
 }
