@@ -32,7 +32,7 @@
         <logback.access.version>1.2.3</logback.access.version>
         <logback.core.version>1.2.3</logback.core.version>
         <logback.ext.spring.version>0.1.4</logback.ext.spring.version>
-        <fastjson.version>1.2.60</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <dubbo.version>2.6.2</dubbo.version>
         <zkclient.version>0.10</zkclient.version>
 
